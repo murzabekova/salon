@@ -1,0 +1,7 @@
+{% extends 'homepage/core.html' %}
+
+		{% block content %}
+		{% for i in slides %}
+			<p><img src="{{i.image.url}}"></p>
+		{% endfor %}
+		{% endblock %}
