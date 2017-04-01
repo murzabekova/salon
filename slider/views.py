@@ -5,7 +5,10 @@ from slider.models import Slider
 
 
 def show(request):
+    slides = Slider.objects.all()
+
     context = {
-        'slides': Slider.objects.all()
+        'slides': slides,
+        'count': range(len(slides)),
     }
     return render(request, 'slider/show.html', context)
