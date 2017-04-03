@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'homepage',
     'post',
     'slider',
+    'accounts',
+    'profiles',
 ]
 
 MIDDLEWARE = [
