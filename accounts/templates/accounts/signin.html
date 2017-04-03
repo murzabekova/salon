@@ -1,11 +1,17 @@
 {% extends 'homepage/core.html' %}
 {% block content %}
-    <div class="well">
-        <form action="" method="POST">{% csrf_token %}
-            <input class="form-control" name="username" type="text" placeholder="Логин">
-            <input class="form-control" name="password" type="text" placeholder="Пароль">
-            <label>{{login_error}}</label>
-            <button class="btn btn-info" type="submit">Войти</button>
-        </form>
+	<div class="container marginfrom">
+		<div class="row">
+		<div class="col-lg-4">
+    	<div class="well">
+	        <form action="" method="POST">{% csrf_token %}
+	            <input class="form-control" name="username" type="text" placeholder="Логин">
+	            <input class="form-control" name="password" type="password" placeholder="Пароль">
+	            <label>{{login_error}}</label>
+	            <button class="btn btn-info" type="submit">Войти</button>
+	        </form>
+    	</div>
+    	</div>
+    	</div>
     </div>
 {% endblock %}
