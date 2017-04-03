@@ -1,11 +1,12 @@
 {% extends 'homepage/core.html' %}
 
 	{% block content %}
-
+	<div class="container marginfrom">
 		{% for i in news %}
+		<h3>{{i.id}}</h3>
 		<h3>{{i.title}}</h3>
 		<p>{{ i.content}}</p>
 		<hr>
 		{% endfor %}
-
+	</div>
 	{% endblock %}

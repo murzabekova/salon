@@ -1,7 +1,10 @@
-from django.shortcuts import render
-from post.models import Post
 import datetime
+
+from django.shortcuts import render
+
+from post.models import Post
 from slider.models import Slider
+
 
 # Create your views here.
 

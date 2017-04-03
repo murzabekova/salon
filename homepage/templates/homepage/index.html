@@ -32,7 +32,12 @@
         </a>
 
     </header>
+    <main>
+        <div class="container">
 	{%for i in posts%}
         {{i.title}}
-        {%endfor%}}
+        <hr>
+    {%endfor%}
+    </div>
+</main>
 	{% endblock %}

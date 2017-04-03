@@ -1,5 +1,7 @@
 from django.shortcuts import render
+
 from slider.models import Slider
+
 
 # Create your views here.
 
