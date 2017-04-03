@@ -1,5 +1,6 @@
 {% extends 'homepage/core.html' %}
 
+
 	{% block content %}
     <!-- Full Page Image Background Carousel Header -->
     <header id="myCarousel" class="carousel slide">
@@ -31,5 +32,7 @@
         </a>
 
     </header>
-	{{messages}}
+	{%for i in posts%}
+        {{i.title}}
+        {%endfor%}}
 	{% endblock %}

@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from post.models import Post
+import datetime
 from slider.models import Slider
 
 # Create your views here.
@@ -7,6 +9,7 @@ from slider.models import Slider
 def index(request):
     slides = Slider.objects.all()
     context = {
+    	'posts': Post.objects.all().order_by('-date'),
         'messages': "first page",
         'slides': slides,
         'count': range(len(slides)),

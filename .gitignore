@@ -1,2 +1,4 @@
 *.pyc
 settings_local.py
+salon_db
+media/
