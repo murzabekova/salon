@@ -13,20 +13,13 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf import settings
-from django.conf.urls import include, url
-from django.conf.urls.static import static
-from django.contrib import admin
+from django.conf.urls import url
 
-from homepage import views as homepage_views
-from post import urls
-from slider import views as slider_views
+from post.views import *
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^$', homepage_views.index, name='index'),
-    url(r'^post/', include('post.urls')),
-    # url(r'^post/$', post_views.post, name='post'),
-    url(r'^slider/$', slider_views.show, name='slider'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
-  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    url(r'^$', post, name='post'),
+    url(r'^create/$', create, name='create'),
+    url(r'^edit/(?P<post_id>[0-9]+)/$', edit, name='edit'),
+    url(r'^delete/(?P<post_id>[0-9]+)/$', delete, name='delete'),
+]
