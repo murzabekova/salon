@@ -26,6 +26,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', homepage_views.index, name='index'),
     url(r'^post/', include('post.urls')),
+    url(r'^accounts/', include('accounts.urls')),
     # url(r'^post/$', post_views.post, name='post'),
     url(r'^slider/$', slider_views.show, name='slider'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\

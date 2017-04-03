@@ -18,6 +18,6 @@ from accounts.views import *
 
 
 urlpatterns = [
-    url(r'^signin/$', slider_views.show, name='signin'),
-    url(r'^signout/$', slider_views.show, name='signout'),
+    url(r'^signin/$', signin, name='signin'),
+    url(r'^signout/$', signout, name='signout'),
 ]
