@@ -18,9 +18,11 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from homepage import views as homepage_views
+from post import views as post_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', homepage_views.index, name='index'),
+    url(r'^post/$', post_views.post, name='post'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
   + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

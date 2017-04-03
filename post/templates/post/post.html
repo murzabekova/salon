@@ -1,0 +1,11 @@
+{% extends 'homepage/core.html' %}
+
+	{% block content %}
+
+		{% for i in news %}
+		<h3>{{i.title}}</h3>
+		<p>{{ i.content}}</p>
+		<hr>
+		{% endfor %}
+
+	{% endblock %}
