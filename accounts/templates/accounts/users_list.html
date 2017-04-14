@@ -1,0 +1,19 @@
+{% extends 'homepage/core.html' %}
+{% block content %}
+	<div class="container marginfrom">
+		<div class="row">
+		<div class="col-lg-8">
+	        <h2>Пользователи</h2>
+	        {% for item in users %}
+	        <div class="well">
+	        	<p>{{item.username}}</p>
+	        	<p>{{item.first_name}}</p>
+	        	<p>{{item.last_name}}</p>
+	        	<p>{{item.email}}</p>
+	        	<p><a href="{% url 'assign_to_administrator' item.username %}"><button class="btn btn-info">Назначить адмнистратором</button></a></p>
+	        </div>
+	        {% endfor %}
+    	</div>
+    	</div>
+    </div>
+{% endblock %}

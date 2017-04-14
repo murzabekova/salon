@@ -20,4 +20,8 @@ from accounts.views import *
 urlpatterns = [
     url(r'^signin/$', signin, name='signin'),
     url(r'^signout/$', signout, name='signout'),
+    url(r'^create_master/$', create_master, name='create_master'),
+    url(r'^signup/$', signup, name='signup'),
+    url(r'^users/$', users_list, name='users'),
+    url(r'^assign_to_administrator/(?P<username>\w+)/$', assign_to_administrator, name='assign_to_administrator'),
 ]

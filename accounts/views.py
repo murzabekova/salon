@@ -1,8 +1,14 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
-
-# Create your views here.
+# from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
+from accounts.forms import MasterRegistrationForm, RegistrationForm
+from rolepermissions.roles import assign_role
+from accounts.permissions import access_create_master
+from django.contrib.auth.models import User
+# user = User.objects.get(id=1)
+# @assign_role(user, 'Master')
 
 
 def signin(request):
@@ -22,16 +28,51 @@ def signin(request):
     return render(request, 'accounts/signin.html', context)
 
 
+@login_required(login_url='/error/')
 def signout(request):
     logout(request)
     return redirect('/')
 
 
-# def registration_view(request):
-#     form = RegistrationForm(request.POST or None)
-#     if form.is_valid():
-#         user = form.save()
-#         user.set_password(request.POST['password'])
-#         user.save()
-#         return redirect('/index/')
-#     return render(request, 'accounts/registration.html', {'form': form})
+@login_required(login_url='/error/')
+def create_master(request):
+    if request.user.is_staff or access_create_master(request.user):
+        form = MasterRegistrationForm(request.POST or None)
+        if form.is_valid():
+            user = form.save()
+            user.set_password(request.POST['password'])
+            assign_role(user, 'master')
+            user.save()
+            return redirect('/')
+        return render(request, 'accounts/signup.html', {'form': form})
+    return redirect('/error')
+
+
+def signup(request):
+    form = RegistrationForm(request.POST or None)
+    if form.is_valid():
+        user = form.save()
+        user.set_password(request.POST['password'])
+        user.save()
+        return redirect('/')
+    return render(request, 'accounts/signup.html', {'form': form})
+
+
+@login_required(login_url='/error/')
+def users_list(request):
+    if request.user.is_staff:
+        users = User.objects.all().filter(is_staff=False)
+        context = {
+            'users': users,
+        }
+        return render(request, 'accounts/users_list.html', context)
+    return redirect('/error/')
+
+
+@login_required(login_url='/error/')
+def assign_to_administrator(request, username):
+    if request.user.is_staff:
+        user = User.objects.get(username=username)
+        assign_role(user, 'administrator')
+        return redirect('/accounts/users/')
+    return redirect('/error/')
