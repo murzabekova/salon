@@ -1,16 +1,20 @@
 {% extends 'homepage/core.html' %}
 {% block content %}
+{% load permission_tags %}
 	<div class="container marginfrom">
 		<div class="row">
 		<div class="col-lg-8">
 	        <h2>Пользователи</h2>
 	        {% for item in users %}
 	        <div class="well">
-	        	<p>{{item.username}}</p>
-	        	<p>{{item.first_name}}</p>
-	        	<p>{{item.last_name}}</p>
+	        	<p>Логин: {{item.username}}</p>
+	        	<p>Имя: {{item.first_name}} {{item.last_name}}</p>
 	        	<p>{{item.email}}</p>
+	        	{% if item|has_role:'administrator' %}
+	        		<p><h4><small>Администратор салона</small></h4></p>
+	        	{% else %}
 	        	<p><a href="{% url 'assign_to_administrator' item.username %}"><button class="btn btn-info">Назначить адмнистратором</button></a></p>
+	        	{% endif %}
 	        </div>
 	        {% endfor %}
     	</div>

@@ -12,9 +12,13 @@ from slider.models import Slider
 def index(request):
     slides = Slider.objects.all()
     context = {
-    	'posts': Post.objects.all().order_by('-date'),
+        'posts': Post.objects.all().order_by('-date'),
         'messages': "first page",
         'slides': slides,
         'count': range(len(slides)),
     }
     return render(request, 'homepage/index.html', context)
+
+
+def error(request):
+    pass
