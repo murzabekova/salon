@@ -1,0 +1,29 @@
+{% extends 'homepage/core.html' %}
+{% block content %}
+	<div class="container marginfrom">
+  
+    {% if request.user.is_authenticated %}
+      {% if not salon.title %}
+        <div class="jumbotron text-center">
+          <h2>Ваш салон пуст</h2>
+          <a href="{% url 'edit_salon' %}"><button class="btn btn-primary"><span class="fa fa-pencil"></span> Заполнить салон</button></a>
+        </div>
+      {% else %}
+      <div class="row ">
+        {% if salon.image %}
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <img src="{{salon.image.url}}" class="img-circle" alt="" width="200" height="200">
+        </div>
+        {% endif %}
+        <div class="col-lg-7 col-md-7 col-sm-12">
+          <h2><b>{{salon.title}}</b></h2>
+          <h4><small><span class="fa fa-envelope"></span> {{request.user.username}} </small></h4>
+          <p>{{salon.description}}</p>
+          <hr>
+          <a href="{% url 'edit_salon' %}" class="btn btn-primary" target="_blank"> <span class="fa fa-pencil"></span> Редактировать салон</a>
+        </div>
+      </div>
+      {% endif %}
+    {%endif%}
+    </div>
+{% endblock %}

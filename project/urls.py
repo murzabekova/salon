@@ -19,15 +19,20 @@ from django.conf.urls.static import static
 from django.contrib import admin
 
 from homepage import views as homepage_views
-from post import urls
 from slider import views as slider_views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+
     url(r'^$', homepage_views.index, name='index'),
+    url(r'^error/$', homepage_views.error, name='error'),
+
     url(r'^post/', include('post.urls')),
+
     url(r'^accounts/', include('accounts.urls')),
-    # url(r'^post/$', post_views.post, name='post'),
+    url(r'^fillial/', include('fillials.urls')),
+    url(r'^profile/', include('profiles.urls')),
+
     url(r'^slider/$', slider_views.show, name='slider'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
   + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
