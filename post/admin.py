@@ -5,8 +5,9 @@ from post.models import Category, Post
 # Register your models here.
 admin.site.register(Category)
 
+
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    fields = ('title', 'category')
+    fields = ('title', 'category', 'content')
 
-#admin.site.register(Post)
+# admin.site.register(Post)

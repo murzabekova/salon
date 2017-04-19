@@ -1,4 +1,4 @@
-import datetime
+# import datetime
 
 from django.shortcuts import render
 
@@ -12,7 +12,7 @@ from slider.models import Slider
 def index(request):
     slides = Slider.objects.all()
     context = {
-    	'posts': Post.objects.all().order_by('-date'),
+        'posts': Post.objects.all().order_by('-date'),
         'messages': "first page",
         'slides': slides,
         'count': range(len(slides)),
