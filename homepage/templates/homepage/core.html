@@ -15,6 +15,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
     <link href="{% static 'css/full-slider.css' %}" rel="stylesheet">
+    <link href="{% static 'css/font-awesome.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">SALON</a>
+                <a class="navbar-brand logofor" href="{% url 'index' %}">Салон</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -45,10 +46,10 @@
                         <a href="{% url 'list_of_salons' %}">Филлиалы</a>
                     </li>
                     <li>
-                        <a href="{% url 'list_of_services' %}">Услуги</a>
+                        <a href="#">Услуги</a>
                     </li>
                     <li>
-                        <a href="#">Contact</a>
+                        <a href="#">Запись</a>
                     </li>
                 </ul>
             <div class="pull-right">
@@ -68,6 +69,7 @@
                                 <li><a href="{% url 'profile' %}">Профиль</a></li>
                             {% elif request.user.is_staff %}
                                 <li><a href="{% url 'users' %}">Пользователи</a></li>
+                                <li><a href="{% url 'list_of_salons_to_activate' %}">Салоны</a></li>
                             {% endif %}
                             </ul>
                         {% else %} 

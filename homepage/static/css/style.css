@@ -1,3 +1,8 @@
+/*@import url('https://fonts.googleapis.com/css?family=Lobster');*/
+@font-face {
+    font-family: 'Lobster';
+    src: url('../fonts/Lobster-Regular.ttf') format('truetype');
+}
 .marginfrom{
 	margin-top:60px;
 }
@@ -9,4 +14,19 @@
   display: block;
   margin-right: auto;
   margin-left: auto;
+}
+.caption,  .ratings{
+	padding: 9px;
+}
+.thumbnail{
+	padding: 0px;
+	box-shadow: 0px 0px 0px #A4A4A4;
+}
+.part{
+	margin-top: 40px;
+}
+.logofor{
+	font-family: Lobster;
+	color: #01DFD7;
+	font-size: 30px;
 }

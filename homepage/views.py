@@ -10,9 +10,9 @@ from slider.models import Slider
 
 
 def index(request):
-    slides = Slider.objects.all()
+    slides = Slider.objects.all().filter(display=True)
     context = {
-        'posts': Post.objects.all().order_by('-date'),
+        'posts': Post.objects.all().order_by('-date')[:3],
         'messages': "first page",
         'slides': slides,
         'count': range(len(slides)),

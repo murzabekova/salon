@@ -6,7 +6,7 @@
       {% if not salon.title %}
         <div class="jumbotron text-center">
           <h2>Ваш салон пуст</h2>
-          <a href="{% url 'edit_salon' %}"><button class="btn btn-primary"><span class="fa fa-pencil"></span> Заполнить салон</button></a>
+          <a href="{% url 'create_salon' %}"><button class="btn btn-primary"><span class="fa fa-pencil"></span> Заполнить салон</button></a>
         </div>
       {% else %}
       <div class="row ">
@@ -20,8 +20,34 @@
           <h4><small><span class="fa fa-envelope"></span> {{request.user.username}} </small></h4>
           <p>{{salon.description}}</p>
           <hr>
-          <a href="{% url 'edit_salon' %}" class="btn btn-primary" target="_blank"> <span class="fa fa-pencil"></span> Редактировать салон</a>
+          <a href="{% url 'edit_salon' %}" class="btn btn-default"> <span class="fa fa-pencil"></span> Редактировать салон</a>
         </div>
+      </div>
+      <div class="row">
+        <h2>Галерея:</h2>
+        <hr>
+        {% if gallery is not None %}
+        {% for gal in gallery %}
+        <div class="col-sm-12 col-lg-3 col-md-4">
+          <div class="thumbnail">
+            <img src="{{gal.image.url}}" class="rat" alt="">
+            <div class="caption">
+              <p>{{gal.title}}<p>
+              <h4><small>Филлиал: {{gal.fillial.title}}</small></h4>
+              <h4> <small><span class="fa fa-calendar"></span> {{gal.created_at}} </small> </h4>
+            </div>
+          </div>
+          </div>
+        {% endfor %}
+        {% endif %}
+      </div>
+      <div class="row">
+        <h2>Услуги:</h2>
+        <hr>
+      </div>
+      <div class="row">
+        <h2>Мастера:</h2>
+        <hr>
       </div>
       {% endif %}
     {%endif%}

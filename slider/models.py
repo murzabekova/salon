@@ -12,6 +12,7 @@ class Slider(models.Model):
     image = models.ImageField(upload_to='slider/images')
     title = models.CharField(max_length=45)
     created_at = models.DateTimeField(auto_now_add=True)
+    display = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title

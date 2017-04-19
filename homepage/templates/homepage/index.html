@@ -34,10 +34,22 @@
     </header>
     <main>
         <div class="container">
-	{%for i in posts%}
-        {{i.title}}
-        <hr>
-    {%endfor%}
+        
+        <div class="row part">
+        <h1>Новости</h1>
+        	{%for i in posts%}
+                <div class="col-lg-4">
+                <div class="thumbnail">
+                    <div class="caption">
+                    <h3>{{i.title}} </h3>
+                    <hr>
+                    <p>{{i.content}}</p>
+                    </div>
+                    </div>
+                </div>
+            {%endfor%}
+            
+        </div>
     </div>
 </main>
 	{% endblock %}
