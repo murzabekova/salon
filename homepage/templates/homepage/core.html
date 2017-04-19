@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load permission_tags %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -36,21 +36,57 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Start Bootstrap</a>
+                <a class="navbar-brand" href="#">SALON</a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">About</a>
+                        <a href="{% url 'list_of_salons' %}">Филлиалы</a>
                     </li>
                     <li>
-                        <a href="#">Services</a>
+                        <a href="{% url 'list_of_services' %}">Услуги</a>
                     </li>
                     <li>
                         <a href="#">Contact</a>
                     </li>
                 </ul>
+            <div class="pull-right">
+                <ul class="nav navbar-nav">
+                    {% if request.user.is_authenticated %}
+                        {% if user|has_role:'administrator, master' or request.user.is_staff %}
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                Привет,  {{request.user.username }}
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                            
+                            {% if user|has_role:'administrator' %}
+                                <li><a href="{% url 'salon' %}">Салон</a></li>
+                            {% elif user|has_role:'master' %}
+                                <li><a href="{% url 'profile' %}">Профиль</a></li>
+                            {% elif request.user.is_staff %}
+                                <li><a href="{% url 'users' %}">Пользователи</a></li>
+                            {% endif %}
+                            </ul>
+                        {% else %} 
+                            <li><a href="">Привет,  {{request.user.username }}</a></li> 
+                        {% endif %} 
+                        </li>
+                        <li>
+                            <a href="{% url 'signout' %}">Выйти</a>  
+                        </li>
+                    {% else %}
+                        <li>
+                            <a href="{% url 'signin' %}" >Вход</a>
+                        </li>
+                        <li>
+                            <a href="{% url 'signup' %}" >Регистрация</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
             </div>
             <!-- /.navbar-collapse -->
         </div>

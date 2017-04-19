@@ -18,3 +18,7 @@ def index(request):
         'count': range(len(slides)),
     }
     return render(request, 'homepage/index.html', context)
+
+
+def error(request):
+    pass

@@ -1,0 +1,4 @@
+django
+pillow
+django-role-permission
+django-image-cropping

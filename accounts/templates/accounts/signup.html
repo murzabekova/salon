@@ -1,10 +1,12 @@
-{% extends 'posts/base.html' %}
+{% extends 'homepage/core.html' %}
 {% block content %}
-    <div class="well">
+	<div class="container marginfrom">
+	    <div class="well marginfrom">
 
-        <form role="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
-            {{form.as_p}}
-            <button class="btn btn-info" type="submit">Быть</button>
-        </form>
+	        <form role="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+	            {{form.as_p}}
+	            <button class="btn btn-info" type="submit">Регистрация</button>
+	        </form>
+	    </div>
     </div>
 {% endblock %}
