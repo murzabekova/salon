@@ -24,7 +24,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'd1^a8v7rxuu^^f7+tad(c-1w%xqpz2#o^)$wrz4@vk(zm5_=2)'
 
 
-
 ALLOWED_HOSTS = []
 
 
@@ -42,6 +41,7 @@ INSTALLED_APPS = [
     'post',
     'slider',
     'profiles',
+    'clients',
     'fillials',
     'schedules',
     'accounts',

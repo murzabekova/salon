@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
-
+from django.http import Http404
 from post.forms import PostForm
 from post.models import Category, Post
 
@@ -26,6 +26,7 @@ def create(request):
             return redirect('/post')
         return render(request, 'post/create.html', {'form': form})
     return redirect('/error/')
+
 
 @login_required(login_url='/error/')
 def edit(request, post_id):
