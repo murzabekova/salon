@@ -1,6 +1,6 @@
 from django import forms
 # from django.contrib.auth.models import User
-from fillials.models import Fillials, Gallery
+from fillials.models import Fillials, Gallery, FillialServices
 
 
 class FillialsForm(forms.ModelForm):
@@ -55,4 +55,11 @@ class GalleryForm(forms.ModelForm):
                 'placeholder': 'Выберите файл',
             }),
         }
+        exclude = ()
+
+
+class FillialServicesForm(forms.ModelForm):
+    class Meta:
+        model = FillialServices
+        fields = ('service_title', 'price')
         exclude = ()

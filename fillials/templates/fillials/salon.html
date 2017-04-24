@@ -23,8 +23,8 @@
           <a href="{% url 'edit_salon' %}" class="btn btn-default"> <span class="fa fa-pencil"></span> Редактировать салон</a>
         </div>
       </div>
-      <div class="row">
-        <h2>Галерея:</h2>
+      <div class="row marginfrom">
+        <h2>Галерея: <a href="{% url 'create_gallery' %}" class="btn btn-default"><span class="fa fa-plus-circle"></span> Добавить картинку</a></h2>
         <hr>
         {% if gallery is not None %}
         {% for gal in gallery %}
@@ -35,6 +35,9 @@
               <p>{{gal.title}}<p>
               <h4><small>Филлиал: {{gal.fillial.title}}</small></h4>
               <h4> <small><span class="fa fa-calendar"></span> {{gal.created_at}} </small> </h4>
+              <p><a href="{% url 'edit_gallery' gal.id %}" class="btn btn-warning"><span class="fa fa-pencil fa-lg"></span></a>
+              <a href="{% url 'delete_gallery' gal.id %}" class="btn btn-danger"><span class="fa fa-trash fa-lg"></span></a></p>
+
             </div>
           </div>
           </div>
@@ -42,11 +45,31 @@
         {% endif %}
       </div>
       <div class="row">
-        <h2>Услуги:</h2>
+        <h2>Услуги: <a href="{% url 'create_service' %}" class="btn btn-default"><span class="fa fa-plus-circle"></span> Добавить услугу</a></h2>
         <hr>
+        <div class="col-lg-7">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Наименование</th>
+                <th>Цена</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% if service is not None %}
+              {% for item in service %}
+                <tr>
+                  <td>{{item.service_title}}</td>
+                  <td>{{item.price}}c</td>
+                </tr>
+              {% endfor %}
+            {% endif %}
+            </tbody>
+          </table>
+        </div>
       </div>
       <div class="row">
-        <h2>Мастера:</h2>
+        <h2>Мастера: <a href="" class="btn btn-default"><span class="fa fa-plus-circle"></span> Добавить мастера</a></h2>
         <hr>
       </div>
       {% endif %}

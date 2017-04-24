@@ -25,4 +25,8 @@ urlpatterns = [
     url(r'^create/$', create_salon, name='create_salon'),
     url(r'^list_of/$', list_of_salons_to_activate, name='list_of_salons_to_activate'),
     url(r'^activate/(?P<salon_id>[0-9]+)/$', activate_salon, name='activate_salon'),
+    url(r'^create_gallery/$', create_gallery, name='create_gallery'),
+    url(r'^delete_gallery/(?P<id_image>[0-9]+)/$', delete_gallery, name='delete_gallery'),
+    url(r'^edit_gallery/(?P<id_image>[0-9]+)/$', edit_gallery, name='edit_gallery'),
+    url(r'^create_service/$', create_service, name='create_service'),
 ]

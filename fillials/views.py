@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
-from fillials.models import Fillials, Gallery
+from fillials.models import Fillials, Gallery, FillialServices
 # from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from rolepermissions.decorators import has_role_decorator
 from project.roles import Administrator
-from fillials.forms import FillialsForm, GalleryForm
+from fillials.forms import FillialsForm, GalleryForm, FillialServicesForm
+from django.core.exceptions import ObjectDoesNotExist
+from django.http import Http404
 # from rolepermissions.verifications import has_permission, has_role
 
 # Create your views here.
@@ -15,10 +17,15 @@ from fillials.forms import FillialsForm, GalleryForm
 def salon(request):
     salon, created = Fillials.objects.get_or_create(user=request.user)
     gallery = Gallery.objects.all().filter(fillial=salon)
+    # try:
+    service = FillialServices.objects.all().filter(fillal=salon)
+    # except ObjectDoesNotExist():
+    # message = 
     context = {
         'salon': salon,
         'username': request.user,
         'gallery': gallery,
+        'service': service,
     }
     return render(request, 'fillials/salon.html', context)
 
@@ -40,18 +47,13 @@ def edit_salon(request):
     context = {}
     form = FillialsForm(request.POST or None, request.FILES or None,
                         instance=Fillials.objects.get(user=request.user), prefix="form")
-    # gallery = GalleryForm(request.POST or None, request.FILES or None, prefix="gallery")
     context = {
         'form': form,
-        # 'gallery': gallery,
     }
     if form.is_valid():  # and gallery.is_valid():
         salon = form.save(commit=False)
         salon.user = request.user
         salon.save()
-        # image = gallery.save(commit=False)
-        # image.fillial = salon
-        # image.save()
         return redirect('/')
     return render(request, 'fillials/edit_salon.html', context)
 
@@ -88,3 +90,44 @@ def activate_salon(request, salon_id):
         fillial.save()
         return redirect('/fillial/list_of/')
     return redirect('/error/')
+
+
+def create_gallery(request):
+    salon = Fillials.objects.get(user=request.user)
+    gallery = GalleryForm(request.POST or None, request.FILES or None)
+    if gallery.is_valid():
+        image = gallery.save(commit=False)
+        image.fillial = salon
+        image.save()
+        return redirect('/fillial/')
+    return render(request, 'fillials/edit_salon.html', {'form': gallery})
+
+
+def delete_gallery(request, id_image):
+    try:
+        post = Gallery.objects.get(id=id_image)
+        post.delete()
+        return redirect('/fillial/')
+    except ObjectDoesNotExist():
+        raise Http404
+
+
+def edit_gallery(request, id_image):
+    gallery = Gallery.objects.get(id=id_image)
+    form = GalleryForm(request.POST or None, request.FILES or None, instance=gallery)
+    if form.is_valid():
+        form.save()
+        return redirect('/fillial/')
+    return render(request, 'fillials/edit_salon.html', {'form': form})
+
+
+def create_service(request):
+    salon = Fillials.objects.get(user=request.user)
+    if salon is not None:
+        form = FillialServicesForm(request.POST or None)
+        if form.is_valid():
+            service = form.save(commit=False)
+            service.fillal = salon
+            service.save()
+            return redirect('/fillial/')
+    return render(request, 'fillials/edit_salon.html', {'form': form})
