@@ -19,7 +19,7 @@ class MasterType(models.Model):
 class MasterProfile(models.Model):
     """docstring for MasterProfile"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    master_type = models.ForeignKey(MasterType)
+    master_type = models.ForeignKey(MasterType, default=None)
     fillial = models.ForeignKey(Fillials)
     first_name = models.CharField(max_length=45)
     last_name = models.CharField(max_length=45, null=True)

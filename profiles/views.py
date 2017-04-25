@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.models import User
 from profiles.models import MasterProfile
 from profiles.forms import ProfileForm
 # Create your views here.

@@ -17,6 +17,7 @@ def index(request):
         'slides': slides,
         'count': range(len(slides)),
     }
+    # print (has_permission(request.user, 'profile'))
     return render(request, 'homepage/index.html', context)
 
 

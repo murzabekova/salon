@@ -1,8 +1,8 @@
-from rolepermissions.permissions import register_object_checker
+from rolepermissions.checkers import has_role
 from project.roles import Administrator
 
 
-@register_object_checker()
 def access_create_master(user):
-    if user.role == 'administrator':
+    if has_role(user, [Administrator]):
         return True
+    return False

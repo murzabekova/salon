@@ -1,14 +1,12 @@
 from django.shortcuts import render
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
-# from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from accounts.forms import MasterRegistrationForm, RegistrationForm
 from rolepermissions.roles import assign_role
 from accounts.permissions import access_create_master
 from django.contrib.auth.models import User
-# user = User.objects.get(id=1)
-# @assign_role(user, 'Master')
+from project.roles import Master, Administrator
 
 
 def signin(request):
@@ -39,9 +37,9 @@ def create_master(request):
     if request.user.is_staff or access_create_master(request.user):
         form = MasterRegistrationForm(request.POST or None)
         if form.is_valid():
-            user = form.save()
+            user = form.save(commit=False)
             user.set_password(request.POST['password'])
-            assign_role(user, 'master')
+            assign_role(user, Master)
             user.save()
             return redirect('/')
         return render(request, 'accounts/signup.html', {'form': form})
@@ -73,6 +71,6 @@ def users_list(request):
 def assign_to_administrator(request, username):
     if request.user.is_staff:
         user = User.objects.get(username=username)
-        assign_role(user, 'administrator')
+        assign_role(user, Administrator)
         return redirect('/accounts/users/')
     return redirect('/error/')

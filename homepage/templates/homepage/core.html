@@ -55,7 +55,7 @@
             <div class="pull-right">
                 <ul class="nav navbar-nav">
                     {% if request.user.is_authenticated %}
-                        {% if user|has_role:'administrator, master' or request.user.is_staff %}
+                        {% if user|has_role:'administrator,master' or request.user.is_staff %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 Привет,  {{request.user.username }}
@@ -65,7 +65,7 @@
                             
                             {% if user|has_role:'administrator' %}
                                 <li><a href="{% url 'salon' %}">Салон</a></li>
-                            {% elif user|has_role:'master' %}
+                            {% elif request.user|has_role:'master' %}
                                 <li><a href="{% url 'profile' %}">Профиль</a></li>
                             {% elif request.user.is_staff %}
                                 <li><a href="{% url 'users' %}">Пользователи</a></li>
