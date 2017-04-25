@@ -32,6 +32,7 @@ urlpatterns = [
     url(r'^accounts/', include('accounts.urls')),
     url(r'^fillial/', include('fillials.urls')),
     url(r'^profile/', include('profiles.urls')),
+    url(r'^clients/', include('clients.urls')),
 
     url(r'^slider/$', slider_views.show, name='slider'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)\
