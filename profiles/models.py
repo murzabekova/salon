@@ -19,10 +19,8 @@ class MasterType(models.Model):
 class MasterProfile(models.Model):
     """docstring for MasterProfile"""
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    master_type = models.ForeignKey(MasterType, default=None)
-    fillial = models.ForeignKey(Fillials)
-    first_name = models.CharField(max_length=45)
-    last_name = models.CharField(max_length=45, null=True)
+    master_type = models.ForeignKey(MasterType, null=True)
+    fillial = models.ForeignKey(Fillials, null=True)
     image = models.ImageField(max_length=256, null=True, upload_to='profiles/')
     created_at = models.DateTimeField(auto_now_add=True)
     email = models.EmailField(max_length=45, null=True)

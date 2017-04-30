@@ -1,10 +1,29 @@
 {% extends 'homepage/core.html' %}
 {% block content %}
 	<div class="container marginfrom">
-        <form role="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
-            <h2>Салон</h2>
-            {{form.as_p}}
-            <button class="btn btn-info" type="submit">Сохранить</button>
-        </form>
+	{% if request.user.is_authenticated %}
+      {% if not profile.fillial %}
+        <div class="jumbotron text-center">
+          <h2>Ваш профиль пуст</h2>
+          <a href="{% url 'edit_profile' %}"><button class="btn btn-primary"><span class="fa fa-pencil"></span> Заполнить профиль</button></a>
+        </div>
+      {% else %}
+      <div class="row ">
+        {% if profile.image %}
+        <div class="col-lg-4 col-md-4 col-sm-12">
+          <img src="{{profile.image.url}}" class="img-circle" alt="" width="200" height="200">
+        </div>
+        {% endif %}
+        <div class="col-lg-7 col-md-7 col-sm-12">
+          <h2><b>{{profile.fillial}}</b></h2>
+          <h4><small><span class="fa fa-envelope"></span> {{request.user.username}} </small></h4>
+          <p>{{request.user.first_name}}</p>
+          <p>{{request.user.last_name}}</p>
+          <hr>
+          <a href="{% url 'edit_profile' %}" class="btn btn-default"> <span class="fa fa-pencil"></span> Редактировать салон</a>
+        </div>
+      </div>
+      {% endif %}
+    {%endif%}    
     </div>
 {% endblock %}

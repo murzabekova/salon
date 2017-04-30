@@ -71,6 +71,17 @@
       <div class="row">
         <h2>Мастера: <a href="{% url 'create_master' %}" class="btn btn-default"><span class="fa fa-plus-circle"></span> Добавить мастера</a></h2>
         <hr>
+        {% for master in masters %}
+          <div class="row">
+            <div class="col-lg-2 col-md-2 col-sm-6">
+              <img src="{{master.image.url}}" class="img-circle" alt="" width="100" height="100">
+            </div>
+          <div class="col-lg-6 col-md-6 col-sm-6">
+            <p>{{master.user.first_name}}</p>
+            <p>{{master.user.last_name}}</p>
+          </div>
+          </div>
+        {% endfor %}
       </div>
       {% endif %}
     {%endif%}

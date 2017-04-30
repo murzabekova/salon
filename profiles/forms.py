@@ -7,19 +7,19 @@ from profiles.models import MasterProfile
 class ProfileForm(forms.ModelForm):
     class Meta():
         model = MasterProfile
-        fields = ('user', 'first_name', 'last_name', 'fillial', 'master_type', 'image', 'email')
+        fields = ('fillial', 'master_type', 'image', 'email')
         widgets = {
-            'first_name': forms.TextInput(attrs={
+            'fillial': forms.Select(attrs={
                 'class': 'form-control',
-                'placeholder': 'Имя',
+                'placeholder': 'Филлиал',
             }),
-            'last_name': forms.TextInput(attrs={
+            'master_type': forms.Select(attrs={
                 'class': 'form-control',
-                'placeholder': 'Фамилия',
+                'placeholder': 'Тип работы',
             }),
-            'country': forms.TextInput(attrs={
+            'image': forms.FileInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Страна',
+                'placeholder': 'Аватар',
             }),
             'email': forms.TextInput(attrs={
                 'class': 'form-control',

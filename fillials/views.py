@@ -20,12 +20,13 @@ def salon(request):
     # try:
     service = FillialServices.objects.all().filter(fillal=salon)
     # except ObjectDoesNotExist():
-    # message = 
+    # message =
     context = {
         'salon': salon,
         'username': request.user,
         'gallery': gallery,
         'service': service,
+        'masters': salon.masterprofile_set.all(),
     }
     return render(request, 'fillials/salon.html', context)
 
