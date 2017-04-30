@@ -132,3 +132,15 @@ def create_service(request):
             service.save()
             return redirect('/fillial/')
     return render(request, 'fillials/edit_salon.html', {'form': form})
+
+
+def salon_detail(request, salon_id):
+    salon = Fillials.objects.get(id=salon_id)
+    if salon is not None:
+        context = {
+            'salon': salon,
+            'gallery': Gallery.objects.all().filter(fillial=salon),
+            'service': FillialServices.objects.all().filter(fillal=salon),
+            'masters': salon.masterprofile_set.all(),
+        }
+    return render(request, 'fillials/salon_for_clients.html', context)

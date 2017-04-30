@@ -3,6 +3,7 @@
 	<div class="container marginfrom">
     <div class="row ">
       {% for salon in salons %}
+      <a href="{% url 'salon_detail' salon.id %}">
       <div class="col-lg-12">
         <div class="row">
           <div class="col-lg-2">
@@ -16,6 +17,7 @@
         </div>
         <hr>
       </div>
+      </a>
       {% endfor %}
     </div>
   </div>

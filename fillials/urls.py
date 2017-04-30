@@ -20,7 +20,7 @@ from fillials.views import *
 urlpatterns = [
     url(r'^$', salon, name='salon'),
     url(r'^list/$', list_of_salons, name='list_of_salons'),
-    # url(r'^services/$', list_of_services, name='list_of_services'),
+    url(r'^list/(?P<salon_id>[0-9]+)/$', salon_detail, name='salon_detail'),
     url(r'^edit/$', edit_salon, name='edit_salon'),
     url(r'^create/$', create_salon, name='create_salon'),
     url(r'^list_of/$', list_of_salons_to_activate, name='list_of_salons_to_activate'),

@@ -1,0 +1,76 @@
+{% extends 'homepage/core.html' %}
+{% block content %}
+  <div class="container marginfrom">
+    <div class="row">
+    {% if salon.image %}
+      <div class="col-md-7">
+          <a href="#">
+              <img class="img-responsive" src="{{salon.image.url}}" alt="">
+          </a>
+      </div>
+    {% endif %}
+      <div class="col-md-5">
+          <h3>{{salon.title}}</h3>
+          <h4>{{request.user.username}}</h4>
+          <p>{{salon.description}}</p>
+         <!--  <a class="btn btn-primary" href="#">View Project <span class="glyphicon glyphicon-chevron-right"></span></a> -->
+      </div>
+  </div>
+  <div class="row marginfrom">
+    <h2>Галерея:</h2>
+    <hr>
+    {% if gallery is not None %}
+      {% for gal in gallery %}
+      <div class="col-sm-12 col-lg-3 col-md-4">
+        <div class="thumbnail">
+          <img src="{{gal.image.url}}" class="rat" alt="">
+          <div class="caption">
+            <p>{{gal.title}}<p>
+            <h4> <small><span class="fa fa-calendar"></span> {{gal.created_at}} </small> </h4>
+          </div>
+        </div>
+        </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="row">
+    <h2>Услуги:</h2>
+    <hr>
+    <div class="col-lg-7">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Наименование</th>
+            <th>Цена</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% if service is not None %}
+          {% for item in service %}
+            <tr>
+              <td>{{item.service_title}}</td>
+              <td>{{item.price}}c</td>
+            </tr>
+          {% endfor %}
+        {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <h2>Мастера: </h2>
+    <hr>
+    {% for master in masters %}
+      <div class="row">
+        <div class="col-lg-2 col-md-2 col-sm-6">
+          <img src="{{master.image.url}}" class="img-circle" alt="" width="100" height="100">
+        </div>
+      <div class="col-lg-6 col-md-6 col-sm-6">
+        <p>{{master.user.first_name}}</p>
+        <p>{{master.user.last_name}}</p>
+      </div>
+      </div>
+    {% endfor %}
+  </div>
+  </div>
+{% endblock %}
