@@ -42,4 +42,4 @@ class FillialServices(models.Model):
     fillal = models.ForeignKey(Fillials)
 
     def __str__(self):
-        return self.title
+        return self.service_title

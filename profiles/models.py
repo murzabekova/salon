@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from fillials.models import Fillials
+from fillials.models import Fillials, FillialServices
 
 # Create your models here.
 
@@ -17,7 +17,9 @@ class MasterType(models.Model):
 
 
 class MasterProfile(models.Model):
-    """docstring for MasterProfile"""
+    class Meta:
+        verbose_name = 'Профиль мастера'
+        verbose_name_plural = 'Профили мастеров'
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     master_type = models.ForeignKey(MasterType, null=True)
     fillial = models.ForeignKey(Fillials, null=True)
@@ -27,3 +29,14 @@ class MasterProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class MasterService(models.Model):
+    class Meta:
+        verbose_name = 'Услуга мастера'
+        verbose_name_plural = 'Услуги мастеров'
+    user = models.ForeignKey(User, null=False)
+    services = models.ManyToManyField(FillialServices, null=False)
+
+    def __str__(self):
+        return self.services

@@ -1,0 +1,14 @@
+{% extends 'homepage/core.html' %}
+{% block content %}
+	<div class="container marginfrom">
+    <div class="row ">
+      {% for service in services %}
+        <p>
+          <a href="{% url 'list_by_service' service.id %}">
+            {{service.title}}
+          </a>
+        </p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}

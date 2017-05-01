@@ -16,16 +16,11 @@ from django.http import Http404
 @has_role_decorator('administrator')
 def salon(request):
     salon, created = Fillials.objects.get_or_create(user=request.user)
-    gallery = Gallery.objects.all().filter(fillial=salon)
-    # try:
-    service = FillialServices.objects.all().filter(fillal=salon)
-    # except ObjectDoesNotExist():
-    # message =
     context = {
         'salon': salon,
         'username': request.user,
-        'gallery': gallery,
-        'service': service,
+        'gallery': salon.gallery_set.all(),
+        'service': salon.fillialservices_set.all(),
         'masters': salon.masterprofile_set.all(),
     }
     return render(request, 'fillials/salon.html', context)

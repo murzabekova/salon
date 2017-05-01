@@ -1,0 +1,27 @@
+{% extends 'homepage/core.html' %}
+{% block content %}
+	<div class="container marginfrom">
+    <div class="row ">
+    <h2>Услуги:</h2>
+    <hr>
+    <div class="col-lg-7">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Филлиалы</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% if services is not None %}
+          {% for item in services %}
+            <tr>
+              <td><a href="{% url 'salon_detail' item.fillal.id %}">{{item.fillal.title}}</a></td>
+            </tr>
+          {% endfor %}
+        {% endif %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+{% endblock %}
