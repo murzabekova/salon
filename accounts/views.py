@@ -39,8 +39,8 @@ def create_master(request):
         if form.is_valid():
             user = form.save(commit=False)
             user.set_password(request.POST['password'])
-            assign_role(user, Master)
             user.save()
+            assign_role(user, Master)
             return redirect('/')
         return render(request, 'accounts/signup.html', {'form': form})
     return redirect('/error')

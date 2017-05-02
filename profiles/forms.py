@@ -1,11 +1,9 @@
-# coding: utf-8
 from django import forms
-# from django.contrib.auth.models import User
-from profiles.models import MasterProfile
+from profiles.models import MasterProfile, MasterService
 
 
 class ProfileForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         model = MasterProfile
         fields = ('fillial', 'master_type', 'image', 'email')
         widgets = {
@@ -26,4 +24,17 @@ class ProfileForm(forms.ModelForm):
                 'placeholder': 'E-mail',
             }),
         }
+        exclude = ()
+
+
+class MasterServiceForm(forms.ModelForm):
+    # class Meta:
+        model = MasterService
+        fields = ('service',)
+        # widgets = {
+        #     'service': forms.Select(attrs={
+        #         'class': 'form-control',
+        #         'placeholder': 'Услуги',
+        #     }),
+        # }
         exclude = ()

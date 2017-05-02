@@ -20,7 +20,5 @@ from profiles.views import *
 urlpatterns = [
     url(r'^$', profile, name='profile'),
     url(r'^edit/$', edit_profile, name='edit_profile'),
-    # url(r'^list/$', list_of_salons, name='list_of_salons'),
-    # url(r'^services/$', list_of_services, name='list_of_services'),
-    # url(r'^signout/$', signout, name='signout'),
+    url(r'^add_service/$', add_service, name='add_service'),
 ]

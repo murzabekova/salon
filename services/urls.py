@@ -17,6 +17,6 @@ from django.conf.urls import url
 from services.views import *
 urlpatterns = [
     url(r'^$', list_of_services, name='list_of_services'),
-    url(r'(?P<service_id>[0-9]+)/$', list_by_service, name='list_by_service'),
+    url(r'^(?P<service_id>[0-9]+)/$', list_by_service, name='list_by_service'),
 
 ]

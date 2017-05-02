@@ -21,7 +21,7 @@ class MasterProfile(models.Model):
         verbose_name = 'Профиль мастера'
         verbose_name_plural = 'Профили мастеров'
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    master_type = models.ForeignKey(MasterType, null=True)
+    master_type = models.ForeignKey(MasterType, null=True, default=None)
     fillial = models.ForeignKey(Fillials, null=True)
     image = models.ImageField(max_length=256, null=True, upload_to='profiles/')
     created_at = models.DateTimeField(auto_now_add=True)
@@ -33,10 +33,10 @@ class MasterProfile(models.Model):
 
 class MasterService(models.Model):
     class Meta:
-        verbose_name = 'Услуга мастера'
+        verbose_name = 'Услуги мастера'
         verbose_name_plural = 'Услуги мастеров'
-    user = models.ForeignKey(User, null=False)
-    services = models.ManyToManyField(FillialServices, null=False)
+    profile = models.ForeignKey(MasterProfile, default=None)
+    service = models.ForeignKey(FillialServices, default=None)
 
     def __str__(self):
-        return self.services
+        return str(self.id)

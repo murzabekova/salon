@@ -7,6 +7,7 @@ from project.roles import Administrator
 from fillials.forms import FillialsForm, GalleryForm, FillialServicesForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import Http404
+from profiles.models import MasterProfile
 # from rolepermissions.verifications import has_permission, has_role
 
 # Create your views here.
@@ -19,9 +20,12 @@ def salon(request):
     context = {
         'salon': salon,
         'username': request.user,
-        'gallery': salon.gallery_set.all(),
-        'service': salon.fillialservices_set.all(),
-        'masters': salon.masterprofile_set.all(),
+        # 'gallery': salon.gallery_set.all(),
+        'gallery': Gallery.objects.all().filter(fillial=salon),
+        # 'service': salon.fillialservices_set.all(),
+        'service': FillialServices.objects.all().filter(fillal=salon),
+        # 'masters': salon.masterprofile_set.all(),
+        'masters': MasterProfile.objects.all().filter(fillial=salon),
     }
     return render(request, 'fillials/salon.html', context)
 

@@ -1,0 +1,12 @@
+{% extends 'homepage/core.html' %}
+{% block content %}
+	{% if request.user.is_authenticated %}
+	<div class="container marginfrom">
+        <form role="form" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <h2>Услуга</h2>
+            {{form.as_p}}
+            <button class="btn btn-info" type="submit">Сохранить</button>
+        </form>
+    </div>
+    {% endif %}
+{% endblock %}

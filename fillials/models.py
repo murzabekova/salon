@@ -39,7 +39,11 @@ class FillialServices(models.Model):
         verbose_name_plural = 'Услуги филлиала'
     service_title = models.ForeignKey(Services, default=None)
     price = models.IntegerField()
-    fillal = models.ForeignKey(Fillials)
+    fillal = models.ForeignKey(
+        Fillials,
+        on_delete=models.CASCADE,
+        related_name='+',
+    )
 
     def __str__(self):
         return self.service_title
