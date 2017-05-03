@@ -25,6 +25,8 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
 
     url(r'^$', homepage_views.index, name='index'),
+    url(r'^end/$', homepage_views.end, name='end'),
+    url(r'^error/$', homepage_views.error, name='error'),
     url(r'^error/$', homepage_views.error, name='error'),
 
     url(r'^post/', include('post.urls')),
