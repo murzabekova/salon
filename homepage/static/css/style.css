@@ -30,3 +30,6 @@
 	color: #01DFD7;
 	font-size: 30px;
 }
+.error {
+	background-image: url('../404.jpg');
+}

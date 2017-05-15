@@ -2,20 +2,14 @@
 {% block content %}
 	<div class="container marginfrom">
     <div class="row ">
-      {% for i in services %}
-      <a href="{% url 'list_of_masters' i.id %}">
+      {% for i in masters %}
       <div class="col-lg-9">
         <div class="row">
           <div class="col-lg-5">
-            <h4><b>{{i.service_title}}</b></h4>
+            <h4><b>{{i.master_id}}</b></h4>
           </div>
-          <div class="col-lg-5">
-              <h4><b>{{i.price}}</b></h4>
-              </div>
         </div>
-        <hr>
       </div>
-      </a>
       {% endfor %}
     </div>
   </div>

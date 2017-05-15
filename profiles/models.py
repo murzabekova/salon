@@ -35,8 +35,5 @@ class MasterService(models.Model):
     class Meta:
         verbose_name = 'Услуги мастера'
         verbose_name_plural = 'Услуги мастеров'
-    profile = models.ForeignKey(MasterProfile, default=None)
+    profile = models.ManyToManyField(MasterProfile, null=True, default=None)
     service = models.ForeignKey(FillialServices, default=None)
-
-    def __str__(self):
-        return str(self.id)
