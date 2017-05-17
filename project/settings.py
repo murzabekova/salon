@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'schedules',
     'accounts',
     'services',
+    'schedule',
 ]
 
 MIDDLEWARE = [

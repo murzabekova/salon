@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html >
+  <head>
+    <meta charset="UTF-8">
+    <title>Login Box Concept</title>
+    <link rel='stylesheet prefetch' href='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/themes/smoothness/jquery-ui.css'>
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+
+  <body>
+  <a id="link1" href="#">Вход</a>
+<div class='login' style="display: none;">
+  <div class='login_fields'>
+    <div class='login_fields__user'>
+      <div class='icon'>
+        <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/user_icon_copy.png'>
+      </div>
+      <input placeholder='Username' type='text'>
+        <div class='validation'>
+          <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
+        </div>
+      </input>
+    </div>
+    <div class='login_fields__password'>
+      <div class='icon'>
+        <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/lock_icon_copy.png'>
+      </div>
+      <input placeholder='Password' type='password'>
+      <div class='validation'>
+        <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/tick.png'>
+      </div>
+    </div>
+    <div class='login_fields__submit'>
+      <input type='submit' value='Log In'>
+    </div>
+  </div>
+  <div class='success'>
+    <h2>Authentication Success</h2>
+    <p>Welcome back!</p>
+  </div>
+</div>
+<div class='authent'>
+  <img src='https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/puff.svg'>
+  <p>Authenticating...</p>
+</div>
+
+    <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js'></script>
+
+        <script src="js/index.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+
+        $('a#link1').click(function (e) {
+
+            $(this).toggleClass('active');
+
+            $('.login').toggle();
+
+                 
+
+            e.stopPropagation();
+
+        });
+
+ 
+
+        $('body').click(function () {
+
+            var link = $('a#link1');
+
+            if (link.hasClass('active')) {
+
+                link.click();
+
+            }
+
+        });
+
+    });
+
+ 
+
+</script>
+
+
+  </body>
+</html>
