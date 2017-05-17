@@ -80,9 +80,9 @@ TEMPLATES = [
 WSGI_APPLICATION = 'project.wsgi.application'
 
 EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 587
 EMAIL_HOST_USER = 'cloud1508@mail.ru'
 EMAIL_HOST_PASSWORD = 'murzabekova94'
-EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
 

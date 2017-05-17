@@ -46,4 +46,4 @@ class FillialServices(models.Model):
     )
 
     def __str__(self):
-        return self.service_title
+        return str(self.service_title)

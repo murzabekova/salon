@@ -1,7 +1,7 @@
 # import datetime
 
 from django.shortcuts import render
-
+from django.http import Http404
 from post.models import Post
 from slider.models import Slider
 
@@ -22,4 +22,8 @@ def index(request):
 
 
 def error(request):
-    pass
+    return render(request, 'homepage/error.html')
+
+
+def end(request):
+    return render(request, 'homepage/end.html')
