@@ -13,7 +13,7 @@ class Fillials(models.Model):
     user = models.OneToOneField(User)
     title = models.CharField(max_length=45)
     description = models.TextField()
-    image = models.ImageField(upload_to='fillals/avatars', null=True)
+    image = models.ImageField(upload_to='fillials/avatars', null=True)
     active = models.BooleanField(default=False)
 
     def __str__(self):
@@ -39,7 +39,7 @@ class FillialServices(models.Model):
         verbose_name_plural = 'Услуги филлиала'
     service_title = models.ForeignKey(Services, default=None)
     price = models.IntegerField()
-    fillal = models.ForeignKey(
+    fillial = models.ForeignKey(
         Fillials,
         on_delete=models.CASCADE,
         related_name='+',

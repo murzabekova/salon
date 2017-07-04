@@ -1,5 +1,5 @@
 from django.contrib import admin
-from fillials.models import Fillials, Gallery
+from fillials.models import Fillials, Gallery, FillialServices
 from fillials.forms import FillialsForm
 
 # Register your models here.
@@ -16,3 +16,5 @@ class FillialsAdmin(admin.ModelAdmin):
     fields = ('title', 'description', 'image')
     inlines = [Fillials_gallery]
     # list_filter = ['created_at']
+
+admin.site.register(FillialServices)

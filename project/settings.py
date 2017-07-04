@@ -40,13 +40,14 @@ INSTALLED_APPS = [
     'homepage',
     'post',
     'slider',
+    'fillials',
     'profiles',
     'clients',
-    'fillials',
     'schedules',
     'accounts',
     'services',
     'schedule',
+    'djangobower',
 ]
 
 MIDDLEWARE = [
@@ -128,12 +129,27 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.10/howto/static-files/
-
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+# STATICFILES_FINDERS = 'djangobower.finders.BowerFinder'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'djangobower.finders.BowerFinder',
+)
+
+BOWER_COMPONENTS_ROOT = 'PROJECT_ROOT/bower_components/'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 ROLEPERMISSIONS_MODULE = 'project.roles'
 ROLEPERMISSIONS_REDIRECT_TO_LOGIN = True
+
+BOWER_INSTALLED_APPS = (
+    'jquery',
+    'jquery-ui',
+    'bootstrap'
+    'fullcalendar'
+)

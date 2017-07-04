@@ -23,7 +23,7 @@ def salon(request):
         # 'gallery': salon.gallery_set.all(),
         'gallery': Gallery.objects.all().filter(fillial=salon),
         # 'service': salon.fillialservices_set.all(),
-        'service': FillialServices.objects.all().filter(fillal=salon),
+        'service': FillialServices.objects.all().filter(fillial=salon),
         # 'masters': salon.masterprofile_set.all(),
         'masters': MasterProfile.objects.all().filter(fillial=salon),
     }
@@ -127,7 +127,7 @@ def create_service(request):
         form = FillialServicesForm(request.POST or None)
         if form.is_valid():
             service = form.save(commit=False)
-            service.fillal = salon
+            service.fillial = salon
             service.save()
             return redirect('/fillial/')
     return render(request, 'fillials/edit_salon.html', {'form': form})
@@ -139,7 +139,7 @@ def salon_detail(request, salon_id):
         context = {
             'salon': salon,
             'gallery': Gallery.objects.all().filter(fillial=salon),
-            'service': FillialServices.objects.all().filter(fillal=salon),
+            'service': FillialServices.objects.all().filter(fillial=salon),
             'masters': salon.masterprofile_set.all(),
         }
     return render(request, 'fillials/salon_for_clients.html', context)

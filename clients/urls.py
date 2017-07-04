@@ -18,11 +18,13 @@ from clients.views import *
 
 
 urlpatterns = [
-    url(r'^contacts/(?P<id_masters>[0-9]+)/$', contacts, name="contacts"),
+    url(r'^contacts/(?P<id_services>[0-9]+)/$', contacts, name="contacts"),
     url(r'^email/$', SubscriptionView, name="email"),
     url(r'^activation/(?P<id_client>[0-9]+)$', activation, name="activation"),
     url(r'^list_of_fillials/$', list_of_fillials, name="list_of_fillials"),
     url(r'^list_of_services/(?P<id_fillials>[0-9]+)/$', list_of_services, name="list_of_services"),
     url(r'^list_of_masters/(?P<id_services>[0-9]+)/$', list_of_masters, name="list_of_masters"),
+    url(r'^event/(?P<id_master>[0-9]+)/$', event, name="event"),
+
 
 ]

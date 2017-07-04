@@ -23,6 +23,7 @@ class Post(models.Model):
     date = models.DateTimeField(auto_now=True)
     content = models.TextField(null=True)
     category = models.ForeignKey(Category)
+    author = models.ForeignKey(User)
 
     def __str__(self):
         return '%s' % self.title

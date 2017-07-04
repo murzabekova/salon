@@ -7,4 +7,3 @@ from clients.models import Clients
 class ClientsAdmin(admin.ModelAdmin):
     model = Clients
     fields = ('name', 'phone', 'email', 'comments')
-

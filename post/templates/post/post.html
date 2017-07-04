@@ -1,12 +1,38 @@
 {% extends 'homepage/core.html' %}
+{% load permission_tags %}
 
 	{% block content %}
-	<div class="container marginfrom">
-		{% for i in news %}
-		<h3>{{i.id}}</h3>
-		<h3>{{i.title}}</h3>
-		<p>{{ i.content}}</p>
-		<hr>
-		{% endfor %}
-	</div>
+	<main>
+        <div class="container">
+        
+        <div class="row part">
+        <h1>Новости
+        {% if request.user.is_authenticated %}
+            {% if user|has_role:'administrator' or request.user.is_staff %}
+            <a href="{% url 'create' %}" class="btn btn-default"><span class="fa fa-plus-circle"></span> Добавить новость</a>
+            {% endif %}
+        {% endif %}</h1>
+        <div class="row marginfrom">
+        	{%for i in news%}
+                <div class="col-lg-4 col-md-4 col-sm-12">
+                <div class="thumbnail">
+                    <div class="caption">
+                    <h3>{{i.title}} </h3>
+                    <hr>
+                    <p>{{i.content}}</p>
+                    <h4> <small><span class="fa fa-calendar"></span> {{i.date}} </small> </h4>
+                    {% if request.user.is_authenticated %}
+                        {% if user|has_role:'administrator' or request.user.is_staff %}
+              			<p><a href="{% url 'edit' i.id %}" class="btn btn-warning"><span class="fa fa-pencil fa-lg"></span></a>
+              			<a href="{% url 'delete' i.id %}" class="btn btn-danger"><span class="fa fa-trash fa-lg"></span></a></p>
+              			{% endif %}
+              		{% endif %}
+                    </div>
+                    </div>
+                </div>
+            {%endfor%}
+            </div>
+        </div>
+    </div>
+</main>
 	{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'homepage/core.html' %}
+{% load permission_tags %}
+
+
+{% load i18n static %}
+
+
+{% block extra_style %}
+<link rel='stylesheet' type='text/css' href="{% static 'fullcalendar/dist/fullcalendar.css' %}" />
+
+<script type='text/javascript' src="{% static 'jquery/dist/jquery.js' %}"></script>
+<script type='text/javascript' src="{% static 'moment/moment.js' %}"></script>
+<script type='text/javascript' src="{% static 'fullcalendar/dist/fullcalendar.js' %}"></script>
+{% endblock extra_style %}
+
+{% block content %}
+<div class="container marginfrom"></div>
+{% endblock %}
+
+{% block scripts %}
+<div id="calendar"></div>
+
+<script type='text/javascript'>
+  $(document).ready(function() {
+    
+    $('#calendar').fullCalendar({
+      header: {
+        left: 'prev,next today',
+        center: 'title',
+        right: 'month,listWeek,listDay'
+      },
+      // customize the button names,
+      // otherwise they'd all just say "list"
+      views: {
+        listDay: { buttonText: 'list day' },
+        listWeek: { buttonText: 'list week' }
+      },
+      defaultView: 'listWeek',
+      defaultDate: '2017-06-17',
+      navLinks: true, // can click day/week names to navigate views
+      editable: true,
+      eventLimit: true, // allow "more" link when too many events
+
+      events: '/schedules/schedule/api/occurrences?calendar_slug={{user}}'
+    });
+    
+  });
+</script>
+
+<style>
+  body {
+    margin: 40px 10px;
+    padding: 0;
+    font-family: "Lucida Grande",Helvetica,Arial,Verdana,sans-serif;
+    font-size: 14px;
+  }
+  #calendar {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+</style>
+
+{% endblock %}

@@ -1,7 +1,6 @@
 from django.shortcuts import render, redirect
 from profiles.models import MasterProfile, MasterService
 from profiles.forms import ProfileForm, MasterServiceForm
-from fillials.models import FillialServices
 from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.

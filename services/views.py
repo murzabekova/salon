@@ -16,7 +16,7 @@ def list_of_services(request):
 def list_by_service(request, service_id):
     service = Services.objects.get(id=service_id)
     fillialservices = service.fillialservices_set.all()
-    # values_list('fillal').distinct()
+    # values_list('fillial').distinct()
     content = {
         'services': fillialservices,
     }

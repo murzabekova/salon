@@ -28,13 +28,13 @@ class ProfileForm(forms.ModelForm):
 
 
 class MasterServiceForm(forms.ModelForm):
-    # class Meta:
+    class Meta:
         model = MasterService
-        fields = ('service',)
-        # widgets = {
-        #     'service': forms.Select(attrs={
-        #         'class': 'form-control',
-        #         'placeholder': 'Услуги',
-        #     }),
-        # }
+        fields = ('service', )
+        widgets = {
+            'service': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Услуги',
+            }),
+        }
         exclude = ()

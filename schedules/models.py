@@ -10,6 +10,7 @@ class Schedule(models.Model):
         verbose_name = 'Расписание'
         verbose_name_plural = 'Расписание'
 
+    name = models.CharField("name", max_length=2000)
     date = models.DateField()
     time = models.CharField(max_length=45)
     master = models.ForeignKey(User)
